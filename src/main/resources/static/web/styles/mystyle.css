@@ -1,0 +1,315 @@
+@font-face {
+  font-family: 'Jolly';
+  src:  url('../assets/font/JollyLodger.ttf');
+}
+
+
+body {
+    background-color: black;
+}
+
+
+
+
+.audiobtns{
+  background-color: transparent!important;
+  color: white!important;
+}
+
+
+@media only screen and (max-width: 768px){
+    
+    /*SMALL SCREENS*/
+  
+#audiobtns {
+  position: absolute;
+  left: 0;
+  top: 10vh;
+}
+
+  h1 {
+    font-size: 1.5em;
+  }
+  h3{ font-size: 1em;}
+    
+    #logindiv, #regdiv {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-flow: column;
+        padding: 1em;
+        width: 100%;
+        color: rgba(255,255,255,.9);
+    }
+    
+    #logo {
+        width: 17em;
+        height: auto;
+        margin-bottom: 2em;
+    }
+    
+    header {
+        position: fixed;
+        top: 0;
+        height: 10vh;
+        width: 100vw;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: .5em 1em .5em 1em;
+        box-shadow: 0 5px 15px -5px #a30000;
+        background-color: black;
+    }
+    
+    #logoheader {
+        width: auto;
+        height: 90%;
+    }
+    
+  #scorestable {
+    display: none;
+  }
+    
+    #maintables {
+        border-bottom: 1px solid dimgrey;
+        border-top: 1px solid dimgrey;
+        width: 100%;
+        height: 60vh;
+        display: flex;
+        justify-content: center;
+        overflow-x: scroll;
+    }
+    
+    #maintables {
+        padding: 0!important;
+    }
+    
+    td.ui.comments {
+        z-index: -99!important;
+    }
+  #gamestable {width: 100%;}
+    #gamestable table{
+        width: 100%;
+        padding-left: .5em;
+        background-color: rgba(128, 128, 128, 0.3);
+    }
+    #gamestable button a {color: white!important;}
+    .author {
+        color: #ff0000!important;
+        font-weight: bold!important;
+        font-size: 110%!important;
+    }
+    #gamestable i {
+        color: darkgrey;
+        font-style: italic;
+    }
+    #gamestable .text, #gamestable td{
+        color:rgba(255,255,255,.9);
+    }
+    
+    #app{
+        background-image: url("../assets/backgroundmobile.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+    }
+    
+    
+    #navbarbigscreen{
+        display: none;
+    }
+    
+    #dropdownmenu{
+        background-color: black;
+        color: white!important;
+    }
+    
+    #navbarsmallscreen{
+        width: 10vw;
+    }
+    #navbarsmallscreen i, #navbarsmallscreen i .active {
+        color: white;
+    }
+  
+  
+}  /*SMALL SCREENS*/
+
+
+
+
+
+
+
+
+
+/*------------------------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------------*/
+@media only screen and (min-width: 769px){
+    
+    /*BIGGER THAN PHONE/TABLET*/
+    
+  
+  #audiobtns {
+  position: absolute;
+  left: 0;
+  top: 16vh;
+}
+  
+  #app {
+    background-image: url("../assets/gamesbackgorund2.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+  }
+  
+    #logindiv, #regdiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+    border: 1px solid dimgrey;
+    border-radius: .5em;
+    padding: 1em;
+    width: 70vh;
+    height: auto;
+    color: rgba(255,255,255,.9);
+    background-color: rgba(128, 128, 128, 0.2);
+    }
+    
+    #logo {
+    width: 10em;
+    padding-bottom: 2em;
+    height: auto;
+    }
+    
+  #navbarsmallscreen{
+    display: none;
+  }
+  
+  header{
+    width: 100vw;
+    height: 15vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    padding: 1em;
+    background-color: rgba(0, 0, 0, 0.5);
+    box-shadow: 0 2px 12px 0px #a30000;
+  }
+  
+  #logoheader {
+        width: auto;
+        height: 90%;
+    }
+  
+  
+  #maintables {
+    width: 100%;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-around;
+    align-items: center;
+  }
+  
+  .mytables {
+    border: 1px solid grey;
+    border-radius: .5em;
+  }
+  .mytables table{
+        width: 100%!important;
+        padding-left: .5em!important;
+        background-color: rgba(128, 128, 128, 0.5)!important;
+    }
+    .mytables button a {color: white!important;}
+    .author {
+        color: rgba(255,255,255,.9)!important;
+        background-color: #c90000!important;
+        font-weight: bold!important;
+        border-radius: .5em!important;
+        padding: 0 5px 2px 5px;!important
+    }
+    .mytables i {
+        color: #bcbcbc!important;
+        font-style: italic!important;
+    }
+    .mytables .text, .mytables td, th{
+        color:white!important;
+    }
+  
+  #gamestable {
+    width:50%;
+    height: 50vh;
+    overflow-x: scroll;
+  }
+  
+  #scorestable {
+    width: 40%;
+    min-width: 400px;
+    overflow-x: scroll;
+  }
+  
+  
+} /*---------BIGGER THAN PHONE/TABLET--------*/
+
+
+
+
+
+
+
+
+
+
+
+nav{
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 20%;
+    height: 100%;
+}
+
+nav .ui.button {
+    height: 100%;
+    background-color: transparent!important;
+    color: rgba(255,255,255,.9);
+    padding: 1em .3em 1em .3em;
+}
+
+nav .ui.button:hover {
+    cursor: pointer;
+    color: #ba0000;
+}
+
+
+#logindiv form, #regdiv form {
+    width: 80%;
+}
+
+#logindiv button, #regdiv button {
+    display: block;
+    margin: auto;    
+}
+
+#app {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+    width: 100vw;
+    min-height: 100vh;    
+    height: auto;
+    /*background-image: url("../assets/balloonsbacklogin.jpg");
+    background-repeat: no-repeat;
+    background-position:center;
+    background-size: cover;*/
+}
+
+body ::-webkit-scrollbar {
+    -webkit-appearance:inherit;
+    width: 0;
+    height: 0;
+    }

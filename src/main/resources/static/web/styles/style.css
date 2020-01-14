@@ -1,0 +1,279 @@
+
+#dock{
+    height: 100px;
+    width: auto;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: .5em;
+    background-color: rgba(0, 0, 0, 0.76);
+}
+
+#grid-salvo{
+  border: 1px solid rgb(128,128,128);
+  /*rgba(255, 216, 0, 0.88);*/
+  border-radius: .5em;
+  overflow: hidden;
+  background-image: url('../assets/manateerainsalvo.jpg');
+  background-position: 30px 30px;
+  background-size: cover;
+}
+
+#grid{
+    background-image: url('../assets/manateerainsalvo.jpg');
+    background-size: cover;
+    background-position:left;
+    background-repeat: no-repeat;
+    border: 1px solid rgb(128,128,128);
+    border-radius: .5em;
+    height: 330px;
+    width: 330px;
+    overflow: hidden;
+}
+
+
+.grid-wrapper{
+    display: absolute;
+    display: flex;
+    flex-direction: column;
+}
+
+.grid-row{
+    display: flex;
+    flex-direction: row;
+}
+
+.grid-cell{
+    display: flex;
+    box-sizing: border-box;
+    width: 30px;
+    height: 30px;
+    border: 1px dashed rgba(141, 141, 141, 0.65);
+    vertical-align: middle;
+    font-weight: bold;
+    text-align: center;
+    align-items: center;
+}
+
+
+.grid-cell span{
+    
+    margin: auto
+}
+
+/*.carrier-busy-cell, .battleship-busy-cell, .submarine-busy-cell, .destroyer-busy-cell, .patrol_boat-busy-cell{
+    background-color: rgba(0, 0, 0, 0.31);
+    
+}*/
+
+.grid-row:first-child .grid-cell{
+    /*background-image: url('../assets/nevodka160600215.jpg');
+    background-repeat: no-repeat;
+    background-position:left;*/
+    background-color: rgba(0, 0, 0, 0.76);
+    color: whitesmoke;
+    border: none;
+    box-shadow: inset -1px -1px 8px rgba(245, 245, 245, 0.5);
+}
+
+.grid-cell:first-child{
+    /*background-image: url('../assets/nevodka160600215.jpg');
+    background-repeat: no-repeat;
+    background-position: left;*/
+    background-color: rgba(0, 0, 0, 0.76);
+    color: whitesmoke;
+    border: none;
+    box-shadow: inset -1px -1px 8px rgba(245, 245, 245, 0.5);
+}
+
+#display {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  position: absolute;
+  z-index: 10;
+  border: 2px solid black;
+  border-radius: .5em;
+  background-color: rgba(0, 0, 0, 0.9);
+  height: 15vh;
+  width: 100vw;
+}
+
+#display p {
+    padding-left: .3em;
+    text-align-last: center;
+    width: 80%;
+    height: auto;
+    color: white;
+    font-size: 3em;
+    overflow: hidden; /* Ensures the content is not revealed until the animation */
+    letter-spacing: .03em; /* Adjust as needed */
+    font-family: 'Jolly';
+    /*animation: 
+        typing 3.5s steps(40, end),
+        blink-caret .75s step-end infinite;*/
+}
+
+
+/* The typing effect */
+/*@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}*/
+
+/* The typewriter cursor effect */
+/*@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: rgb(0, 255, 0); }
+}*/
+
+.grip{
+    position: absolute;
+    z-index: 99;
+    left: 5px;
+    top: 5px;
+    width: 25px;
+    height: 25px;
+    background: gray;
+    background-image: url('../assets/icons/hand-grab-icon.jpg');
+    background-size: contain;
+    border-radius: 50%;
+    opacity: .7;
+    cursor: grab;
+}
+
+.grid-item{
+    transform-origin: 25px center;
+    position: relative;
+}
+
+.grid-item .grid-item-content{
+    width: inherit;
+    height: inherit;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+#carrier .grid-item-content{
+    background-image: url('../assets/ships/ssgeorgie3.png');
+    background-size: 90% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#battleship .grid-item-content{
+    background-image: url('../assets/ships/ssgeorgie3.png');
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#submarine .grid-item-content{
+    background-image: url('../assets/ships/ssgeorgie3.png');
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#destroyer .grid-item-content{
+    background-image: url('../assets/ships/ssgeorgie3.png');
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#patrol_boat .grid-item-content{
+    background-image: url('../assets/ships/ssgeorgie3.png');
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.absolute{
+    position: absolute;
+}
+
+.hide{
+    top: -1000px;
+    left: -1000px;
+}
+
+
+
+
+
+
+
+
+
+/*@media only screen and (min-width: 576px){
+
+    .flex-container{
+        flex-flow: row-reverse wrap;
+    }
+
+    #dock{
+        width: auto;
+        height: 385px;
+        flex-flow: column-reverse wrap;
+    }
+
+    #display {
+        height: 385px;
+        width: 385px;
+    }
+
+    #grid, #grid-salvo{
+        height: 385px;
+        width: 385px;
+        border-radius: .5em;
+    }
+
+    .grid-cell{
+        width: 35px;
+        height: 35px;
+    }
+
+    .grip{
+        width: 25px;
+        height: 25px;
+    }
+}*/
+
+@media only screen and (min-width: 768px){
+
+    .flex-container{
+        flex-flow: row-reverse wrap;
+    }
+
+    #dock{
+        flex-flow: column-reverse wrap;
+        width: auto;
+        height: 495px;
+    }
+
+    #display {
+        height: 15vh;
+        width: 100vw;
+    }
+
+    #grid, #grid-salvo{
+        height: 495px;
+        width: 495px;
+        border-radius: .5em;
+    }
+
+    .grid-cell{
+        width: 45px;
+        height: 45px;
+    }
+
+    .grip{
+        width: 35px;
+        height: 35px;
+    }
+}
+

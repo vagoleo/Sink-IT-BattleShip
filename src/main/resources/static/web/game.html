@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="styles/normalize.css" type="text/css"/>
+    <link rel="stylesheet" href="styles/style.css" type="text/css"/>
+    <link rel="stylesheet" href="styles/mystylegame.css" type="text/css"/>
+    <link rel="stylesheet" href="styles/animate.css" type="text/css"/>
+    <link rel="shortcut icon" sizes="196x196" href="../web/assets/LOGO1.png">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <title>Salvo</title>
+</head>
+<body>
+
+
+
+
+
+<div id="app">
+      <header>        
+      <img id="logoheader" src="assets/SINKITPNGLOGO.png" alt="">
+      
+            <nav id="navbarbigscreen">
+                <button @click="goback()" class="navbtn ui large button"><i class="angle left white icon"></i>Go Back</button>
+            </nav>
+          </header>  <!--HEADER-->
+   <!--<div class="text-center">
+       <template v-for="i in gvdata.gamePlayers" v-if="i.gpid == gp">
+           <p>{{i.player.username}} (You)</p>
+       </template>
+        <p><b>vs.</b></p>
+       <template v-for="i in gvdata.gamePlayers" v-if="i.gpid != gp">
+           <p>{{i.player.username}} (Enemy)</p>
+       </template>
+   </div>-->
+   
+  <div class="ui icon buttons" id="audiobtns">
+      <button class="ui button audiobtns" @click="playaudio()">
+          <i class="play icon"></i>
+      </button>
+      <button class="ui button audiobtns" @click="pauseaudio()">
+          <i class="pause icon"></i>
+      </button>
+  </div>
+   
+
+              
+   <div id="allgrids">
+        <div id="display">
+             <p class="animated slideInLeft"></p>
+          </div>
+        
+        <div id='dock'>
+          <!--Ships will appear here waiting to be placed-->
+        </div>
+        
+        <div id="grid">
+           <!--<div id="display2">
+             <p></p>
+             
+             
+           </div>-->
+            <!-- Main grid will appear here -->  
+        </div>
+        
+        <button id="shootbtn" class="ui red button" @click="sendSalvos(gp)">Shoot!</button>
+        <button id="shipsbtn" class="ui red button" @click="addShips()">Add Ships</button>
+        
+        <div id="grid-salvo">
+           
+            <!-- Salvo grid will appear here -->
+        </div>
+  </div><!--Allgrids-->
+  
+  
+  
+  
+  
+  
+  <template v-if="(gameState == 'WAIT_OPPONENT') || (gameState == 'WAIT_OPPONENT_SHIPS')">
+  <div id="waitoppscreen">
+    <img src="../web/assets/waitingpenny.gif" alt="">
+    <h1 v-if="gameState == 'WAIT_OPPONENT'"> Waiting for an opponent...</h1>
+    <h1 v-if="gameState == 'WAIT_OPPONENT_SHIPS'"> Wait for your opponent to place their ships...</h1>
+  </div>
+  </template>
+  
+  <template v-if="gameState == 'ENTER_SHIPS'">
+    <div class="endscreen" id="vsscreen">
+     <template v-for="i in gvdata.gamePlayers" v-if="i.gpid == gp">
+        <h1 id="p1" class="animated slideInLeft">{{i.player.username}}</h1>
+     </template>
+        <h1 id="vs" style="color: #b90000;">vs.</h1>
+     <template v-for="i in gvdata.gamePlayers" v-if="i.gpid != gp">
+        <h1 id="p2" class="animated slideInRight">{{i.player.username}}</h1>
+     </template>
+    </div>
+  </template>
+  
+  <template v-if="gameState == 'WON'">
+    <div class="endscreen">
+      <div class="endscreencontent">
+         <img src="../web/assets/winpenny.gif" alt="">
+         <h1>You Won!</h1>
+         <h2>Congratulations!</h2>
+         <p>You defeated your enemy by sinking their entire fleet.. <br>
+         <a href="/web/games.html">Go back to the Main screen</a> and play another game.</p>
+      </div>
+   </div>
+   </template>
+  
+  <template v-if="gameState == 'LOST'">
+    <div class="endscreen">
+      <div class="endscreencontent">
+         <img src="../web/assets/losepenny.gif" alt="">
+         <h1>You Lost!</h1>
+         <h2>Shame on you!</h2>
+         <p>You've been defeated by your enemy and you will float for ever.. <br>
+         <a href="/web/games.html">Go back to the Main screen</a> and try again.</p>
+      </div>
+   </div>
+  </template>
+  
+  <template v-if="gameState == 'TIED'">
+    <div class="endscreen">
+      <div class="endscreencontent">
+         <img src="../web/assets/tiepenny.gif" alt="">
+         <h1>It's a Tie!</h1>
+         <h2>Unbelievable!</h2>
+         <p>You both sunk your enemy's boats at the same time.. <br>
+         <a href="/web/games.html">Go back to the Main screen</a> and untie this with another match.</p>
+      </div>
+   </div>
+  </template>
+   
+   
+   <audio id="audio" src="../web/assets/audio/Youll%20float%20too.mp3" loop></audio>
+   
+</div> <!--app-->
+   
+   
+
+   
+
+   
+    
+    
+    
+
+    
+  
+    
+
+    <!--Semantic-->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <!--VUE-->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!--SCRIPT-->
+    <script src="scripts/game.js"></script>
+    <script src="scripts/grid.js"></script>
+    <script src="scripts/ships.js"></script>
+
+    
+    
+</body>
+</html>

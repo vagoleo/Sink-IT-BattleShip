@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="styles/normalize.css" type="text/css"/>
+    <link rel="stylesheet" href="styles/style.css" type="text/css"/>
+    <link rel="stylesheet" href="styles/mystyle.css" type="text/css"/>
+    <link rel="shortcut icon" sizes="196x196" href="../web/assets/LOGO1.png">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+
+    <title>Home</title>
+</head>
+
+<body>
+    <div id="app">        
+        
+        
+        <template v-if="currentPlayer == 'guest'"> <!--IF GUEST-->
+        
+        <component :is="view" v-on:viewx="view = $event" :submitinfo="submitinfo"></component>
+    
+        </template>
+        
+        
+        <template v-else>  <!--IF LOGGED IN-->
+          <header>  <!--HEADER-->
+            <img id="logoheader" src="assets/SINKITPNGLOGO.png" alt="">
+            
+              
+            <nav id="navbarsmallscreen">
+                <div class="ui dropdown button" style="padding:.5em;">
+                    <i class="large bars white icon"></i>
+                    <div id="dropdownmenu" class="menu" tabindex="1!important">
+                        <div class="item">
+                            <form @submit.prevent="createGame()">
+                                <button class="navbtn ui button" type="submit">New Game</button>
+                            </form>
+                        </div>
+                        <div class="item">
+                           <button class="navbtn ui button" @click="showmodal()">Leaderboard</button>
+                        </div>
+                        <div class="item">
+                            <form @submit.prevent="submitinfo('logout', 'logoutform')" id="logoutform">
+                                <button class="navbtn ui button" type="submit">Log out</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>    
+            </nav>
+            
+            
+            <nav id="navbarbigscreen">
+                <form @submit.prevent="createGame()">
+                    <button class="navbtn ui large button" type="submit">New Game</button>
+                </form>
+                <form @submit.prevent="submitinfo('logout', 'logoutform')" id="logoutform">
+                    <button class="navbtn ui large button" type="submit">Log out</button>
+                </form>
+            </nav>
+          </header>  <!--HEADER-->
+           <br>
+           
+           
+          
+           <div class="ui icon buttons" id="audiobtns">
+              <button class="ui button audiobtns" @click="playaudio()">
+                <i class="play icon"></i>
+              </button>
+              <button class="ui button audiobtns" @click="pauseaudio()">
+                <i class="pause icon"></i>
+              </button>
+          </div>
+           
+           <h1 style="color:rgba(255,255,255,.9);">Welcome,  <span style="color: #c90000">{{currentPlayer.username}}</span>!</h1>
+          <h3 style="color:rgba(255,255,255,.9); align-self: flex-start; padding-left: 2em;">Create a new Game or join one below:</h3>
+              
+              
+              
+             <div id="maintables">
+               
+                <div class="mytables" id="gamestable">
+                   <table class="ui unstackable very basic table">
+                       <tbody>
+                           <tr v-for="game in games">
+                               <td class="ui comments">
+                                   <div class="comment">
+                                        <div class="content">
+                                          <a class="author">Game {{game.gameid}}</a>
+                                          <div class="metadata">
+                                            <span class="date"><i>{{game.created}}</i></span>
+                                          </div>
+                                          <div class="text">
+                                            {{game.gamePlayers.map(x => x.player.username).join(" , ")}}
+                                          </div>
+                                        </div>
+                                     </div>
+                               </td>
+                               <td>
+                                   <template v-for="gp in game.gamePlayers">
+                                     <template v-if="(gp.player.playerid == currentPlayer.playerid) && (gp.score==null)">
+                                         <button class="ui tiny red button"><a :href="'/web/game.html?gp='+gp.gpid">Enter</a></button>
+                                     </template>
+                                     <template v-else-if="game.gamePlayers.length == 1">
+                                         <button @click="joinGame(game.gameid)" class="ui tiny red button">Join</button>
+                                     </template>
+                                    </template>
+                               </td>
+                           </tr>
+                           
+                           
+                       </tbody>
+                   </table>
+                 </div>
+                 
+                 <div class="mytables" id="scorestable">
+                   <table class="ui unstackable very basic table">
+                        <thead>
+                            <tr>
+                                <th class="center aligned">Player</th>
+                                <th>Score</th>
+                                <th>Wins</th>
+                                <th>Ties</th>
+                                <th>Loses</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="player in playersList">
+                                <td>{{player.username}}</td>
+                                <td>{{player.total}}</td>
+                                <td>{{player.wins}}</td>
+                                <td>{{player.ties}}</td>
+                                <td>{{player.loses}}</td>
+                            </tr>
+                        </tbody>
+                   </table>
+                 </div>
+                 
+               </div>
+
+            
+               <div class="ui modal" id="scoresmodal">
+                  <div class="header">Leaderboard</div>
+                  <div class="scrolling content">
+                    <table class="ui unstackable very basic table">
+                        <thead>
+                            <tr>
+                                <th>Player</th>
+                                <th>Score</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="player in playersList">
+                                <td>{{player.username}}</td>
+                                <td>{{getScores("total", player.playerid)}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                  </div>
+                </div>
+          
+           
+        
+
+        </template> <!--IF LOGGED IN-->
+        
+        
+         
+    
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+<audio id="audio" src="../web/assets/audio/Derry.mp3" loop></audio>         
+         
+</div> <!--app-->
+    
+    
+    <!--Semantic-->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <!--VUE-->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!--SCRIPT-->
+    <script src="scripts/games.js"></script>
+    
+</body>
+</html>
